@@ -22,7 +22,7 @@ const createNav = () => {
   crear.textContent = 'Crear';
   buscador.classList.add('search-form');
   inputBuscar.type = 'text';
-  inputBuscar.placeholder = '       Buscar';
+  inputBuscar.placeholder = 'Buscar';
   inputBuscar.classList.add('search-bar');
   btnBuscar.type = 'submit';
   btnBuscar.classList.add('search-button');
@@ -48,23 +48,40 @@ const createNav = () => {
   navbar.append(mensajes);
   navbar.append(perfil);
 };
-
 createNav();
 
+//! OBTENER VALOR DEL INPUT PARA BUSCAR IMÁGENES
+const searchForm = document.querySelector('.search-form');
+const searchInput = document.querySelector('.search-bar');
+const imageContainer = document.querySelector('#gallery');
 
+// Búsqueda inicial con el término "surf" -> para que salgan algunas imágenes al principio
+performSearch('surf');
+
+searchForm.addEventListener('submit', (event) => {
+  event.preventDefault(); // Previene el envío del formulario
+  const searchValue = searchInput.value; // Obtiene el valor del input
+  imageContainer.innerHTML = ''; // Limpia el contenedor de imágenes antes de la nueva búsqueda
+  performSearch(searchValue);
+})
+
+
+function performSearch(query) {
 //! FETCH API
- for (let i = 0; i < 1; i++) { // cambiar la i
-   fetch(`https://api.unsplash.com/search/photos?page=${i}&per_page=30&query=surf&client_id=DKX8RFHjXo-PYoAveyuGV5a7gFdUXra8DvHlgOJPU8E`)
+ for (let i = 0; i < 1; i++) { 
+   fetch(`https://api.unsplash.com/search/photos?page=${i}&per_page=30&query=${query}&client_id=DKX8RFHjXo-PYoAveyuGV5a7gFdUXra8DvHlgOJPU8E`)
    .then((res) => res.json())
-   .then((pics) => printImages(pics.results));
+   .then((pics) => printImages(pics.results))
+   .catch((error) => alert('Error al buscar imágenes: ' + error.message));
    };
+  };
+
 
 //! PINTAR IMÁGENES
  const gallerySection = document.querySelector('#gallery');
  const printImages = (images) => {
    for (const image of images) {
      const img = document.createElement('img');
-     // console.log(image.links.download);
      img.src = image.links.download;
      img.classList.add('pic-pinterest');
      gallerySection.appendChild(img);

@@ -9,6 +9,40 @@
   font-family: "Reddit Sans", sans-serif;
   }
 
+  :root {
+    /* COLORS */
+    --rtc-color-0: white;
+    --rtc-color-1: black;
+    --rtc-color-2: #f1f1f1;
+
+    --rtc-bgButton: var(--rtc-color-1);
+    --rtc-btnLetter: var(--rtc-color-0);
+    --rtc-bgSearchBar: var(--rtc-color-2);
+  
+    /* BORDER RADIUS */
+    --rtc-border-radius: 50px;
+  
+    /* SPACINGS */
+    --rtc-margin-xs: 5px;
+    --rtc-margin-s: 10px;
+    --rtc-margin-m: 20px;
+    --rtc-margin-l: 30px;
+    --rtc-margin-xl: 40px;
+  
+    --rtc-padding-xs: 5px;
+    --rtc-padding-s: 10px;
+    --rtc-padding-m: 20px;
+    --rtc-padding-l: 30px;
+    --rtc-padding-xl: 40px;
+  
+    --rtc-gap-xs: 5px;
+    --rtc-gap-s: 10px;
+    --rtc-gap-m: 20px;
+    --rtc-gap-l: 30px;
+    --rtc-gap-xl: 40px;
+    --rtc-gap-xxl: 50px;
+  }
+
 
 /* ! NAVBAR */
 #navbar {
@@ -24,15 +58,15 @@
 }
 
 .logo {
-  margin-left: 30px;
+  margin-left: var(--rtc-margin-l);
   cursor: pointer;
 }
 
 .search-button {
   border: none;
   padding: 5px 10px 10px 10px;
-  border-radius: 50px;
-  margin-right: 5px;
+  border-radius: var(--rtc-border-radius);
+  margin-right: var(--rtc-margin-xs);
 }
 
 .search-button:hover {
@@ -41,8 +75,7 @@
 
 .button-img {
   height: 20px;
-  padding-top: 5px;
-
+  padding-top: var(--rtc-padding-xs);
 }
 
 .search-form {
@@ -52,39 +85,39 @@
 .search-bar {
   height: 40px;  
   width: 90%;
-  background-color: #f1f1f1;
+  background-color: var(--rtc-bgSearchBar);
   border: none;
-  border-radius: 50px;
-
+  border-radius: var(--rtc-border-radius);
+  padding-left: var(--rtc-padding-m); 
 }
 
 #navbar > ul {
   display: flex;
-  gap: 50px;
-  margin: 20px;
+  gap: var(--rtc-gap-xxl);
+  margin: var(--rtc-margin-m);
 }
 
 #navbar > ul > li {
-  padding: 10px;
-  border-radius: 50px;
+  padding: var(--rtc-padding-s);
+  border-radius: var(--rtc-border-radius);
 }
 
 #navbar > ul > li:hover {
-  background-color: black;
-  color: white;
+  background-color: var(--rtc-bgButton);
+  color: var(--rtc-btnLetter);
   cursor: pointer;
 }
 
 .notificaciones {
-  margin-right: 10px;
+  margin-right: var(--rtc-margin-s);
 }
 
 .mensajes {
-  margin-right: 10px;
+  margin-right: var(--rtc-margin-s);
 }
 
 .perfil {
-  margin-right: 10px;
+  margin-right: var(--rtc-margin-s);
 }
 
 .notificaciones:hover {
