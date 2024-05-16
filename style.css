@@ -21,6 +21,7 @@
   
     /* BORDER RADIUS */
     --rtc-border-radius: 50px;
+    --rtc-border-radius-s: 20px;
   
     /* SPACINGS */
     --rtc-margin-xs: 5px;
@@ -28,6 +29,7 @@
     --rtc-margin-m: 20px;
     --rtc-margin-l: 30px;
     --rtc-margin-xl: 40px;
+    --rtc-margin-xxl: 150px;
   
     --rtc-padding-xs: 5px;
     --rtc-padding-s: 10px;
@@ -51,6 +53,11 @@
   height: 80px;
   justify-content: space-between;
   align-items: center;
+  position: fixed;  /* Fija la barra de navegación en la parte superior */
+  top: 0;           /* Alinea la barra de navegación con la parte superior de la página */
+  z-index: 1000;    /* Asegura que la barra de navegación esté por encima de otros elementos */
+  background-color: white; /* Añade un fondo para que el contenido no se vea detrás de la barra */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Opcional: Añade una sombra para darle algo de profundidad */
 }
 
 #navbar > img {
@@ -138,8 +145,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 50px;
-  gap: 50px;
+  gap: var(--rtc-gap-xxl);
+  margin-top: var(--rtc-margin-xxl);
+  margin-bottom: var(--rtc-margin-xxl);
 }
 
 .pic-pinterest {
@@ -147,10 +155,48 @@
   height: auto;
   object-fit: cover;
   object-position: center;
-  border-radius: 20px;
+  border-radius: var(--rtc-border-radius-s);
   transition: transform 0.5s ease; /* Transición suave */
 }
 
 .pic-pinterest:hover {
   transform: scale(1.1); /* Zoom-in */
+}
+
+/* RESPONSIVE */
+@media (width <= 920px) {
+  #navbar > ul {
+    display: none;
+  }
+
+  .search-button {
+    display: none;
+  }
+}
+
+/*! SCROLL-DOWN  */
+.scale-on-scroll {
+	transition: transform 0.5s ease;
+}
+
+/* View-Driven scaling animation */
+@keyframes scale-a-lil {
+	from {
+		transform: scale(0.5);
+    opacity:0;
+	}
+	to {
+		transform: scale(1);
+    opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	@supports (animation-timeline: view()) {
+		.scale-on-scroll {
+			animation: scale-a-lil linear both;
+			animation-timeline: view();
+			animation-range: 25vh 75vh;
+		}
+	}
 }

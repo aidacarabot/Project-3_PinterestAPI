@@ -1,5 +1,5 @@
-//! CREAR NAVBAR
 
+//! CREAR NAVBAR
 const createNav = () => {
   const navbar = document.querySelector('#navbar');
   const logo = document.createElement('img');
@@ -50,6 +50,7 @@ const createNav = () => {
 };
 createNav();
 
+
 //! OBTENER VALOR DEL INPUT PARA BUSCAR IMÁGENES
 const searchForm = document.querySelector('.search-form');
 const searchInput = document.querySelector('.search-bar');
@@ -68,11 +69,11 @@ searchForm.addEventListener('submit', (event) => {
 
 function performSearch(query) {
 //! FETCH API
- for (let i = 0; i < 1; i++) { 
+ for (let i = 0; i < 50; i++) { 
    fetch(`https://api.unsplash.com/search/photos?page=${i}&per_page=30&query=${query}&client_id=DKX8RFHjXo-PYoAveyuGV5a7gFdUXra8DvHlgOJPU8E`)
    .then((res) => res.json())
    .then((pics) => printImages(pics.results))
-   .catch((error) => alert('Error al buscar imágenes: ' + error.message));
+  //  .catch((error) => alert('Error al buscar imágenes: ' + error.message));
    };
   };
 
@@ -82,8 +83,8 @@ function performSearch(query) {
  const printImages = (images) => {
    for (const image of images) {
      const img = document.createElement('img');
-     img.src = image.links.download;
-     img.classList.add('pic-pinterest');
+     img.src = image.urls.regular;
+     img.classList.add('pic-pinterest', 'scale-on-scroll');
      gallerySection.appendChild(img);
    }
  };
