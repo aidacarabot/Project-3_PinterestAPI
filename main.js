@@ -18,6 +18,7 @@ const createNav = () => {
   logo.src = "./assets/logo.png";
   logo.classList.add('logo');
   inicio.textContent = 'Inicio';
+  inicio.classList.add('inicio');
   explorar.textContent = 'Explorar';
   crear.textContent = 'Crear';
   buscador.classList.add('search-form');
@@ -69,11 +70,19 @@ searchForm.addEventListener('submit', (event) => {
 
 function performSearch(query) {
 //! FETCH API
- for (let i = 0; i < 50; i++) { 
+const gallerySection = document.querySelector('#gallery');
+ for (let i = 0; i < 10; i++) { 
    fetch(`https://api.unsplash.com/search/photos?page=${i}&per_page=30&query=${query}&client_id=DKX8RFHjXo-PYoAveyuGV5a7gFdUXra8DvHlgOJPU8E`)
    .then((res) => res.json())
-   .then((pics) => printImages(pics.results))
-  //  .catch((error) => alert('Error al buscar imágenes: ' + error.message));
+   .then((pics) => {
+    if (pics.results.length > 0) {
+      printImages(pics.results);
+    }
+    if (gallerySection.children.length === 0) {
+      gallerySection.classList.add('gallery-error');
+      showError(); // comprobamos si hay imágenes pintadas, y si no, llamamos a la función de error.
+    }
+  });
    };
   };
 
@@ -88,3 +97,32 @@ function performSearch(query) {
      gallerySection.appendChild(img);
    }
  };
+
+   //! MOSTRAR ERROR
+   const showError = () => {
+    const errorMessage = document.createElement('p');
+    errorMessage.textContent = 'La palabra que estás intentando buscar no existe.';
+    errorMessage.classList.add('error-message');
+
+    const retryButton = document.createElement('button');
+    retryButton.textContent = 'Prueba con otra palabra';
+    retryButton.classList.add('retry-button');
+    retryButton.addEventListener('click', () => {
+      location.reload(); // recarga la página desde el principio
+    })
+
+    gallerySection.appendChild(errorMessage);
+    gallerySection.appendChild(retryButton);
+   };
+
+   //! VOVLER A INICIO
+   const logoInicio = document.querySelector('.logo');
+   const InicioButton = document.querySelector('.inicio');
+
+   logoInicio.addEventListener('click', () => {
+    location.reload();
+   });
+
+   InicioButton.addEventListener('click', () => {
+    location.reload();
+   });
