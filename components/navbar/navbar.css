@@ -1,0 +1,151 @@
+
+/* ! NAVBAR */
+#navbar {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;  /* Fija la barra de navegación en la parte superior */
+  top: 0;           /* Alinea la barra de navegación con la parte superior de la página */
+  z-index: 1000;    /* Asegura que la barra de navegación esté por encima de otros elementos */
+  background-color: white; /* Añade un fondo para que el contenido no se vea detrás de la barra */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Opcional: Añade una sombra para darle algo de profundidad */
+  padding-right: var(--rtc-padding-m);
+}
+
+#navbar > img {
+  height: 30px;
+}
+
+.logo {
+  margin-left: var(--rtc-margin-l);
+  cursor: pointer;
+}
+
+.search-button {
+  border: none;
+  padding: 5px 10px 10px 10px;
+  border-radius: var(--rtc-border-radius);
+  margin-right: var(--rtc-margin-xs);
+}
+
+.search-button:hover {
+  cursor: pointer;
+}
+
+.button-img {
+  height: 20px;
+  padding-top: var(--rtc-padding-xs);
+}
+
+.search-form {
+  width: 50%;
+}
+
+.search-bar {
+  height: 40px;  
+  width: 90%;
+  background-color: var(--rtc-bgSearchBar);
+  border: none;
+  border-radius: var(--rtc-border-radius);
+  padding-left: var(--rtc-padding-m); 
+}
+
+#navbar > ul {
+  display: flex;
+  gap: var(--rtc-gap-xxl);
+  margin: var(--rtc-margin-m);
+}
+
+#navbar > ul > li {
+  padding: var(--rtc-padding-s);
+  border-radius: var(--rtc-border-radius);
+}
+
+#navbar > ul > li:hover {
+  background-color: var(--rtc-bgButton);
+  color: var(--rtc-btnLetter);
+  cursor: pointer;
+}
+
+.notificaciones {
+  margin-right: var(--rtc-margin-s);
+}
+
+.mensajes {
+  margin-right: var(--rtc-margin-s);
+}
+
+.perfil {
+  margin-right: var(--rtc-margin-s);
+}
+
+.notificaciones:hover {
+  cursor: pointer;
+}
+
+.mensajes:hover {
+  cursor: pointer;
+}
+
+.perfil:hover {
+  cursor: pointer;
+}
+
+.menu-hamburguesa {
+  display: none;
+  cursor: pointer;
+}
+
+.active {
+  background-color: aquamarine;
+  width: 100px;
+  height: 100px;
+}
+
+
+
+
+
+/*! RESPONSIVE */
+@media (width <= 940px) {
+  #navbar > ul {
+    display: none;
+  }
+
+  .search-button {
+    display: none;
+  }
+
+  .error-message {
+    font-size: medium;
+  }
+
+  .logo {
+    margin-right: var(--rtc-margin-s);
+  }
+
+  .notificaciones {
+    display: none;
+  }
+
+  .mensajes {
+    display: none;
+  }
+
+  .perfil {
+    display: none;
+  }
+
+  .menu-hamburguesa {
+    display: block;
+  }
+
+  .search-form {
+    width: 80%;
+    margin-left: var(--rtc-margin-m);
+  }
+
+
+}
